@@ -62,6 +62,13 @@ public class AppScrape extends AccessibilityService {
         return navObj;
     }
 
+    private Object data = null;
+    public Object getData() { return data; }
+    public void setData(Object data) {
+        this.data = data;
+    }
+
+
     private static final String TAG = "myDebug";
     private static final String CUSTOM_SWITCH = "com.example.CUSTOM_SWITCH";
 

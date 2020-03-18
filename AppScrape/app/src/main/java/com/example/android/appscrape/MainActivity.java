@@ -8,8 +8,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -85,11 +87,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         } else if ( view == collect ) {
-            AppScrape.setCount(0);
-            PackageManager pm = getPackageManager();
-            checkAppExistence(pm);
+            if ( AppScrape.getInstance() != null ) {
+                AppScrape.setCount(0);
+                PackageManager pm = getPackageManager();
+                checkAppExistence(pm);
+            } else {
+                Toast.makeText(this, "Please give permission", Toast.LENGTH_SHORT).show();
+            }
         } else if ( view == showdata ) {
-            Intent intent=new Intent(this,flipkart_data.class);
+            Intent intent = new Intent(this, ShowData.class);
             startActivity(intent);
         }
     }

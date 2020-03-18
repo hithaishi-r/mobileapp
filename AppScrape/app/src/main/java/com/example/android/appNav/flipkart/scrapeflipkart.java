@@ -4,7 +4,6 @@ import android.util.Log;
 import android.view.accessibility.AccessibilityNodeInfo;
 
 import com.example.android.appscrape.AppScrape;
-import com.example.android.appscrape.MainActivity;
 
 import java.lang.String;
 
@@ -12,12 +11,11 @@ import java.util.Iterator;
 
 public class scrapeflipkart {
 
-
-
     public static boolean scrape(){
         Boolean value = Boolean.FALSE;
         AccessibilityNodeInfo primeNode = null;
         Iterator<AccessibilityNodeInfo> iterator = AppScrape.getLeafNodes().iterator();
+
         while (iterator.hasNext()) {
             primeNode = iterator.next();
             if ( primeNode != null ) {
@@ -44,5 +42,4 @@ public class scrapeflipkart {
         }
         return value;
     }
-
 }

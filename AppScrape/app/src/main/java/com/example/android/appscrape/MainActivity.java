@@ -95,10 +95,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Toast.makeText(this, "Please give permission", Toast.LENGTH_SHORT).show();
             }
         } else if ( view == showdata ) {
-            Object myData = AppScrape.getInstance().getData();
-            Log.e(TAG, "onShowData: " + myData.toString() );
-//            Intent intent=new Intent(this, flipkart_data.class);
-//            startActivity(intent);
+            Intent intent = new Intent(this, ShowData.class);
+            startActivity(intent);
         }
     }
 }

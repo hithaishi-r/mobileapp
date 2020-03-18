@@ -27,12 +27,6 @@
                 android:name="android.accessibilityservice"
                 android:resource="@xml/app_scrape" />
         </service>
-        <!--<receiver android:name=".MyBroadcast"
-                android:exported="true">
-            <intent-filter>
-                <action android:name="CUSTOM_SWITCH" />
-            </intent-filter>
-        </receiver>-->
     </application>
 
 </manifest>

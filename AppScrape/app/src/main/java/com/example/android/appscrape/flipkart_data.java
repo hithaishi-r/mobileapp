@@ -14,15 +14,9 @@ public class flipkart_data extends AppCompatActivity {
         setContentView(R.layout.activity_flipkart_data);
 
         TextView _name=(TextView) findViewById(R.id._name);
-        TextView _number=(TextView) findViewById(R.id._number);
-        TextView _email=(TextView) findViewById(R.id._email);
 
-        String name=scrapeflipkart.getName();
-        String number=scrapeflipkart.getNumber();
-        String email=scrapeflipkart.getEmail();
+        Object myData = AppScrape.getInstance().getData();
 
-        _name.setText(name);
-        _number.setText(number);
-        _email.setText(email);
+        _name.setText(myData.toString());
     }
 }

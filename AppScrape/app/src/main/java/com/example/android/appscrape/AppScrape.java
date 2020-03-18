@@ -1,0 +1,106 @@
+// Copyright 2016 Google Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+package com.example.android.appscrape;
+
+import android.accessibilityservice.AccessibilityService;
+import android.util.Log;
+import android.view.accessibility.AccessibilityEvent;
+import android.view.accessibility.AccessibilityNodeInfo;
+
+import java.util.ArrayDeque;
+import java.util.Deque;
+
+import com.example.android.appscrape.utility.navUtil;
+
+public class AppScrape extends AccessibilityService {
+    //private String[] array={"Open Drawer","My Account"};
+
+    public static int count = -1;
+
+    public static void setCount(int count) {
+        AppScrape.count = count;
+    }
+
+    public static int getCount() {
+        return count;
+    }
+
+    public static void countIncrement(int value) {
+        count+=value;
+    }
+
+    private static final String TAG = "myDebug";
+
+    public static Deque<AccessibilityNodeInfo> getLeafNodes() {
+        return leafNodes;
+    }
+
+    public static void appendLeafNodes(AccessibilityNodeInfo _node) {
+        leafNodes.add(_node);
+    }
+
+    public static void clearLeafNodes() {
+        leafNodes.clear();
+    }
+
+    public static void setLeafNodes(Deque<AccessibilityNodeInfo> leafNodes) {
+        AppScrape.leafNodes = leafNodes;
+    }
+
+    private static Deque<AccessibilityNodeInfo> leafNodes = new ArrayDeque<>();
+
+    @Override
+    protected void onServiceConnected() {
+        Log.e(TAG, "onServiceConnected: " + getServiceInfo() );
+
+        super.onServiceConnected();
+    }
+
+    @Override
+    public void onAccessibilityEvent(AccessibilityEvent accessibilityEvent){
+
+
+        if ( MainActivity.getStartFlag() == Boolean.TRUE ) {
+            AccessibilityNodeInfo root = getRootInActiveWindow();
+
+            if ( root != null ) {
+                if (root.getPackageName().equals(MainActivity.appPackageName)) {
+                    Log.e(TAG, "onAccessibilityEvent: " + accessibilityEvent.getSource());
+                    clearLeafNodes();
+                    Log.e(TAG, "onAccessibilityEvent: counter value" + count);
+                    AccessibilityNodeInfo root1 = getRootInActiveWindow();
+                    com.example.android.appNav.flipkart.navCode.stepsExecutor(root1);
+                }
+
+            }
+        }
+    }
+
+    public static void findNodes(AccessibilityNodeInfo _root) {
+        AccessibilityNodeInfo root = _root;
+        if (root != null) {
+            Log.e(TAG, "onAccessibilityEvent: " + root.getChildCount());
+            leafNodes.add(root);
+            navUtil.findChildElement(root);
+            Log.e(TAG, "onAccessibilityEvent: >>" + leafNodes.size());
+        }
+    }
+
+
+    @Override
+    public void onInterrupt() {
+
+    }
+}

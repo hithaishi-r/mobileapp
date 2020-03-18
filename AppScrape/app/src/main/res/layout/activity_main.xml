@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="false"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/permission"
+        android:layout_width="128dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="200dp"
+        android:layout_centerHorizontal="true"
+        android:text="Permission" />
+
+    <Button
+        android:id="@+id/collect"
+        android:layout_width="128dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/permission"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        android:text="Collect" />
+
+    <Button
+        android:id="@+id/showdata"
+        android:layout_width="128dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/collect"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        android:text="Show Data" />
+
+
+</RelativeLayout>

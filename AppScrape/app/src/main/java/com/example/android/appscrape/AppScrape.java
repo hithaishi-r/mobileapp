@@ -15,62 +15,75 @@
 package com.example.android.appscrape;
 
 import android.accessibilityservice.AccessibilityService;
+import android.content.Intent;
 import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Deque;
 
 import com.example.android.appscrape.utility.navUtil;
 
 public class AppScrape extends AccessibilityService {
-    //private String[] array={"Open Drawer","My Account"};
 
     public static int count = -1;
-
     public static void setCount(int count) {
         AppScrape.count = count;
     }
-
     public static int getCount() {
         return count;
     }
-
     public static void countIncrement(int value) {
         count+=value;
     }
+    public static void stopCount() {
+        getInstance().broadcastIntent("instruction","home");
+        count = -1;
+    }
 
-    private static final String TAG = "myDebug";
-
+    private static Deque<AccessibilityNodeInfo> leafNodes = new ArrayDeque<>();
     public static Deque<AccessibilityNodeInfo> getLeafNodes() {
         return leafNodes;
     }
-
     public static void appendLeafNodes(AccessibilityNodeInfo _node) {
         leafNodes.add(_node);
     }
-
     public static void clearLeafNodes() {
         leafNodes.clear();
     }
-
     public static void setLeafNodes(Deque<AccessibilityNodeInfo> leafNodes) {
         AppScrape.leafNodes = leafNodes;
     }
 
-    private static Deque<AccessibilityNodeInfo> leafNodes = new ArrayDeque<>();
+    public static AppScrape navObj = null;
+    public static AppScrape getInstance() {
+        return navObj;
+    }
+
+    private static final String TAG = "myDebug";
+    private static final String CUSTOM_SWITCH = "com.example.CUSTOM_SWITCH";
+
+    @Override
+    public void onCreate() {
+        // passing current instance to main activity
+        navObj = this;
+        if ( leafNodes == null ) {
+            leafNodes = new ArrayDeque<AccessibilityNodeInfo>();
+        }
+        super.onCreate();
+    }
 
     @Override
     protected void onServiceConnected() {
-        Log.e(TAG, "onServiceConnected: " + getServiceInfo() );
-
+        Log.e(TAG, "onServiceConnected: " + getServiceInfo().toString() );
         super.onServiceConnected();
     }
 
     @Override
     public void onAccessibilityEvent(AccessibilityEvent accessibilityEvent){
-
+        Log.e(TAG, "onAccessibilityEvent: counter value : " + count);
 
         if ( MainActivity.getStartFlag() == Boolean.TRUE ) {
             AccessibilityNodeInfo root = getRootInActiveWindow();
@@ -79,11 +92,9 @@ public class AppScrape extends AccessibilityService {
                 if (root.getPackageName().equals(MainActivity.appPackageName)) {
                     Log.e(TAG, "onAccessibilityEvent: " + accessibilityEvent.getSource());
                     clearLeafNodes();
-                    Log.e(TAG, "onAccessibilityEvent: counter value" + count);
                     AccessibilityNodeInfo root1 = getRootInActiveWindow();
                     com.example.android.appNav.flipkart.navCode.stepsExecutor(root1);
                 }
-
             }
         }
     }
@@ -98,9 +109,17 @@ public class AppScrape extends AccessibilityService {
         }
     }
 
-
     @Override
     public void onInterrupt() {
 
+    }
+
+    // broadcast a custom intent.
+    public void broadcastIntent( String name, String broadcastType ){
+        Intent intent = new Intent();
+        intent.setAction(CUSTOM_SWITCH);
+        intent.putExtra(name, broadcastType );
+        sendBroadcast(intent);
+        Log.e(TAG, "broadcastIntent: sending custom broadcast: " + broadcastType );
     }
 }

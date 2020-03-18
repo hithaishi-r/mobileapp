@@ -69,13 +69,18 @@ public class navCode {
                     }
                 }
                 break;
-            /*case 5:
-                Intent intent=new Intent();
-                intent.setAction("CUSTOM_SWITCH");
-                context.sendBroadcast(intent);
-                AppScrape.countIncrement(1);
-                MainActivity.setStartFlag(Boolean.FALSE);
-                break;*/
+            case 5:
+                AppScrape.findNodes(root);
+                node = navUtil.findMyButton("Open Drawer");
+                if ( navUtil.getBtnFindFlag() ) {
+                    navUtil.clickButton(node);
+                    AppScrape.clearLeafNodes();
+                    AppScrape.countIncrement(1);
+                }
+                break;
+            case 6:
+                AppScrape.stopCount();
+                break;
             default:
         }
     }

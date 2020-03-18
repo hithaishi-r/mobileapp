@@ -1,6 +1,8 @@
 package com.example.android.appscrape;
 
+import android.content.BroadcastReceiver;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -17,13 +19,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button showdata;
     private static final String TAG = "MyActivity";
     public final static String appPackageName = "com.flipkart.android";
+    private static final String CUSTOM_SWITCH = "com.example.CUSTOM_SWITCH";
 
     public static Boolean startFlag = Boolean.FALSE;
-
     public static Boolean getStartFlag() {
         return startFlag;
     }
-
     public static void setStartFlag(Boolean startFlag) {
         MainActivity.startFlag = startFlag;
     }
@@ -41,13 +42,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         showdata=(Button) findViewById(R.id.showdata);
         showdata.setOnClickListener(this);
+
+        BroadcastReceiver br = new MyBroadcast();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(CUSTOM_SWITCH);
+        this.registerReceiver(br, filter);
     }
 
     private boolean openActivity (String applicationPackageName) {
         Intent launchIntent = getPackageManager().getLaunchIntentForPackage(applicationPackageName);
         if (launchIntent != null) {
-            startActivity(launchIntent);//null pointer check in case package name was not found
-            //try{Thread.sleep(2000);}catch(InterruptedException ie){}
+            startActivity(launchIntent);
             setStartFlag(Boolean.TRUE);
             startService(new Intent(MainActivity.this, AppScrape.class));
         }
@@ -60,11 +65,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void checkAppExistence(PackageManager packageManager){
         try {
             if(packageManager.getApplicationInfo(appPackageName, 0).enabled){
-                //Log.e(TAG, "present");
                 openActivity(appPackageName);
             }
-
-
         } catch (PackageManager.NameNotFoundException e) {
             try {
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));

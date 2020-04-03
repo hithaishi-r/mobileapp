@@ -8,7 +8,10 @@
         android:label="appscrape"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ShowData"></activity>
+        <activity
+            android:name=".ShowData"
+            android:parentActivityName=".MainActivity">
+        </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

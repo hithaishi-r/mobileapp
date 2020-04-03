@@ -21,21 +21,28 @@ public class navCode {
         switch(AppScrape.getCount()){
             case 0:
                 AppScrape.findNodes(root);
-                node = navUtil.findMyButton("Open Drawer");
+                node = navUtil.findMyButton("Open Drawer","content_description");
                 if ( navUtil.getBtnFindFlag() ) {
                     navUtil.clickButton(node);
                     AppScrape.clearLeafNodes();
                     AppScrape.countIncrement(1);
+                }else{
+                    node = navUtil.findMyButton("Drawer","content_description");
+                    if ( navUtil.getBtnFindFlag() ) {
+                        navUtil.clickButton(node);
+                        AppScrape.clearLeafNodes();
+                        AppScrape.countIncrement(1);
+                    }
                 }
                 break;
             case 1:
                 AppScrape.findNodes(root);
-                node = navUtil.findMyButton("Fashion");
+                node = navUtil.findMyButton("Fashion","text");
                 if ( navUtil.getBtnFindFlag() ) {
                     AppScrape.clearLeafNodes();
                     AppScrape.countIncrement(1);
                 }else{
-                    node = navUtil.findMyButton("My Account");
+                    node = navUtil.findMyButton("My Account","text");
                     if ( navUtil.getBtnFindFlag() ) {
                         AppScrape.clearLeafNodes();
                         AppScrape.countIncrement(2);
@@ -50,7 +57,7 @@ public class navCode {
                 break;
             case 3:
                 AppScrape.findNodes(root);
-                node = navUtil.findMyButton("My Account");
+                node = navUtil.findMyButton("My Account","text");
                 if ( navUtil.getBtnFindFlag() ) {
                     navUtil.clickButton(node);
                     AppScrape.clearLeafNodes();
@@ -59,7 +66,7 @@ public class navCode {
                 break;
             case 4:
                 AppScrape.findNodes(root);
-                node = navUtil.findMyButton("Flipkart Plus");
+                node = navUtil.findMyButton("Flipkart Plus","text");
                 if ( navUtil.getBtnFindFlag() ) {
                     AppScrape.clearLeafNodes();
                     AppScrape.findNodes(root);
@@ -71,7 +78,7 @@ public class navCode {
                 break;
             case 5:
                 AppScrape.findNodes(root);
-                node = navUtil.findMyButton("Open Drawer");
+                node = navUtil.findMyButton("Open Drawer","content_description");
                 if ( navUtil.getBtnFindFlag() ) {
                     navUtil.clickButton(node);
                     AppScrape.clearLeafNodes();

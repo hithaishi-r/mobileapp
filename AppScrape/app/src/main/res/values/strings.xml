@@ -15,9 +15,12 @@
 -->
 
 <resources>
-    <string name="app_name">Global Action Bar Service</string>
-    <string name="power">Power</string>
-    <string name="volume">Vol +</string>
-    <string name="scroll">Scroll</string>
-    <string name="swipe">Swipe</string>
+    <string name="app_name">App Scrape</string>
+    <string-array name="app_names">
+        <item>select app</item>
+        <item>Flipkart</item>
+        <item>Amazon</item>
+        <item>Ola</item>
+        <item>Uber</item>
+    </string-array>
 </resources>

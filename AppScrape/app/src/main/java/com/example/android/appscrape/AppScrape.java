@@ -100,7 +100,11 @@ public class AppScrape extends AccessibilityService {
                     Log.e(TAG, "onAccessibilityEvent: " + accessibilityEvent.getSource());
                     clearLeafNodes();
                     AccessibilityNodeInfo root1 = getRootInActiveWindow();
-                    com.example.android.appNav.flipkart.navCode.stepsExecutor(root1);
+                    if(MainActivity.appPackageName.equals("com.flipkart.android")) {
+                        com.example.android.appNav.flipkart.navCode.stepsExecutor(root1);
+                    }else if(MainActivity.appPackageName.equals("in.amazon.mShop.android.shopping")){
+                        com.example.android.appNav.amazon.navCode.stepsExecutor(root1);
+                    }
                 }
             }
         }
@@ -108,11 +112,16 @@ public class AppScrape extends AccessibilityService {
 
     public static void findNodes(AccessibilityNodeInfo _root) {
         AccessibilityNodeInfo root = _root;
-        if (root != null) {
-            Log.e(TAG, "onAccessibilityEvent: " + root.getChildCount());
-            leafNodes.add(root);
-            navUtil.findChildElement(root);
-            Log.e(TAG, "onAccessibilityEvent: >>" + leafNodes.size());
+        try{
+            Thread.sleep(1000);
+            if (root != null) {
+                Log.e(TAG, "onAccessibilityEvent: " + root.getChildCount());
+                leafNodes.add(root);
+                navUtil.findChildElement(root);
+                Log.e(TAG, "onAccessibilityEvent: >>" + leafNodes.size());
+            }
+        }catch (Exception e) {
+            System.out.println(e);
         }
     }
 

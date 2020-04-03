@@ -5,6 +5,8 @@ import android.view.accessibility.AccessibilityNodeInfo;
 
 import com.example.android.appscrape.AppScrape;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.Iterator;
 
 public class navUtil {
@@ -17,7 +19,8 @@ public class navUtil {
         return btnFindFlag;
     }
 
-    public static AccessibilityNodeInfo findMyButton(String fieldString) {
+
+    public static AccessibilityNodeInfo findMyButton(String fieldString,String field) {
         btnFindFlag = Boolean.FALSE;
         AccessibilityNodeInfo primeNode = null;
         Iterator<AccessibilityNodeInfo> iterator = AppScrape.getLeafNodes().iterator();
@@ -27,11 +30,11 @@ public class navUtil {
             String nodeDesc = ("" + primeNode.getContentDescription()).toString();
             String nodeName = ("" + primeNode.getText()).toString();
             Log.e(TAG,"reached");
-            if ( nodeName.equals(fieldString) ) {
+            if (field.equals("text") && nodeName.equals(fieldString) ) {
                 Log.e(TAG, "findMyButton: " + primeNode.toString() );
                 btnFindFlag = Boolean.TRUE;
                 break;
-            } else if ( nodeDesc.equals(fieldString)) {
+            } else if (field.equals("content_description") && nodeDesc.equals(fieldString)) {
                 Log.e(TAG, "findMyButton: " + primeNode.toString() );
                 btnFindFlag = Boolean.TRUE;
                 break;
@@ -77,4 +80,5 @@ public class navUtil {
             }
         }
     }
+
 }

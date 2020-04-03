@@ -10,26 +10,27 @@
 
     <Button
         android:id="@+id/permission"
-        android:layout_width="128dp"
+        android:layout_width="200dp"
         android:layout_height="50dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="170dp"
         android:layout_centerHorizontal="true"
         android:text="Permission" />
 
-    <Button
-        android:id="@+id/collect"
-        android:layout_width="128dp"
+    <Spinner
+        android:id="@+id/app_select"
+        android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_below="@id/permission"
         android:layout_marginTop="30dp"
         android:layout_centerHorizontal="true"
-        android:text="Collect" />
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"/>
 
     <Button
         android:id="@+id/showdata"
-        android:layout_width="128dp"
+        android:layout_width="200dp"
         android:layout_height="50dp"
-        android:layout_below="@id/collect"
+        android:layout_below="@id/app_select"
         android:layout_marginTop="30dp"
         android:layout_centerHorizontal="true"
         android:text="Show Data" />

@@ -1,11 +1,16 @@
 package com.example.android.appNav.flipkart;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 public class data {
 
     private String name;
     private String number;
     private String email;
-    private String address;
+    private List<Map<String, String>> orders = new ArrayList<Map<String, String>>();
+
 
     public String getName() {
         return name;
@@ -31,11 +36,11 @@ public class data {
         this.email = email;
     }
 
-    public String getAddress() {
-        return address;
+    public List<Map<String, String>> getOrders() {
+        return orders;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setOrders(List<Map<String, String>> orders) {
+        this.orders = orders;
     }
 }

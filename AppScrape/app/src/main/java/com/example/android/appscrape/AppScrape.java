@@ -113,7 +113,7 @@ public class AppScrape extends AccessibilityService {
     public static void findNodes(AccessibilityNodeInfo _root) {
         AccessibilityNodeInfo root = _root;
         try{
-            Thread.sleep(1000);
+            Thread.sleep(700);
             if (root != null) {
                 Log.e(TAG, "onAccessibilityEvent: " + root.getChildCount());
                 leafNodes.add(root);

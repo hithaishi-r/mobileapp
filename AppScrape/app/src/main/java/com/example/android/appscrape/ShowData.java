@@ -26,6 +26,7 @@ public class ShowData extends AppCompatActivity {
         if(getMessage()!=null){
             Toast.makeText(this, getMessage() , Toast.LENGTH_SHORT).show();
         }
+        message=null;
     }
 
     public static String getJSON( Object obj ) {

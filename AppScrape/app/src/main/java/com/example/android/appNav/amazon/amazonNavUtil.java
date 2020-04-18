@@ -14,7 +14,7 @@ public class amazonNavUtil {
     public static String getFilter() { return filter; }
     public static void setFilter(String filter) { amazonNavUtil.filter = filter; }*/
 
-    public static int counter = -1;
+    private static int counter = -1;
     public static void setCounter(int count) {
         amazonNavUtil.counter = count;
     }
@@ -59,7 +59,7 @@ public class amazonNavUtil {
         AccessibilityNodeInfo primeNode = null;
         Iterator<AccessibilityNodeInfo> iterator = AppScrape.getLeafNodes().iterator();
 
-        while (iterator.hasNext()) {
+        while (iterator.hasNext() && counter<6) {
             primeNode = iterator.next();
             if (filter.equals(primeNode.getText())) {
                 flag = Boolean.TRUE;
@@ -85,7 +85,7 @@ public class amazonNavUtil {
         AccessibilityNodeInfo primeNode = null;
         Iterator<AccessibilityNodeInfo> iterator = AppScrape.getLeafNodes().iterator();
 
-        while (iterator.hasNext()) {
+        while (iterator.hasNext() && counter<6) {
             primeNode = iterator.next();
             if (textField.equals(primeNode.getText())) {
                 count++;

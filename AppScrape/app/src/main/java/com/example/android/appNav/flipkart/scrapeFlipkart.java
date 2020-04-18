@@ -13,19 +13,17 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-public class scrapeflipkart {
+public class scrapeFlipkart {
 
     private static Boolean startFlag = Boolean.FALSE;
     public static Boolean getStartFlag() { return startFlag; }
-    public static void setStartFlag(Boolean flag) { scrapeflipkart.startFlag = flag; }
+    public static void setStartFlag(Boolean flag) { scrapeFlipkart.startFlag = flag; }
 
     private static com.example.android.appNav.flipkart.data flipkartData = new data();
 
     private static List<Map<String, String>> orders = new ArrayList<Map<String, String>>();
 
     public static boolean scrapePersonalInfo(){
-        Boolean value = Boolean.FALSE;
-        Boolean flag=Boolean.FALSE;
         AccessibilityNodeInfo primeNode = null;
         Iterator<AccessibilityNodeInfo> iterator = AppScrape.getLeafNodes().iterator();
 
@@ -35,7 +33,6 @@ public class scrapeflipkart {
                 String nodeName = "" + primeNode.getText();
                 //Log.e(TAG,"reached");
                 if ( nodeName.equals("editprofile") ) {
-                    flag=Boolean.TRUE;
                     Log.e("scrape", "findMyButton: " + primeNode.toString() );
                     primeNode = iterator.next();
                     primeNode = iterator.next();
@@ -54,15 +51,11 @@ public class scrapeflipkart {
                     }
 
                     //AppScrape.getInstance().setData(flipkartData);
-                    value =  Boolean.TRUE;
                     break;
                 }
             }
         }
-        if(!flag){
-            value=Boolean.TRUE;
-        }
-        return value;
+        return true;
     }
 
     public static boolean scrapeOrders(){

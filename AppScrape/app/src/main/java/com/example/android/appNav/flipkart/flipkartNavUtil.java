@@ -5,8 +5,6 @@ import android.view.accessibility.AccessibilityNodeInfo;
 
 import com.example.android.appscrape.AppScrape;
 import com.example.android.appscrape.utility.navUtil;
-import java.util.ArrayDeque;
-import java.util.Deque;
 import java.util.Iterator;
 
 public class flipkartNavUtil {

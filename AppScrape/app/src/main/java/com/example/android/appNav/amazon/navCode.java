@@ -22,7 +22,7 @@ public class navCode {
                 AppScrape.findNodes(root);
                 node = navUtil.findMyButton("Your Orders","text");
                 if ( navUtil.getBtnFindFlag() ) {
-                    if(scrapeamazon.scrapeName()){
+                    if(scrapeAmazon.scrapeName()){
                         navUtil.clickButton(node);
                         AppScrape.countIncrement(1);
                     }
@@ -53,9 +53,9 @@ public class navCode {
                 node=navUtil.findMyButton("No orders or transactions found. Please select a different time period or order type.","text");
                 if(navUtil.getBtnFindFlag()){
                     ShowData.setMessage("No orders in the last 6 months");
-                    scrapeamazon.setStartFlag(Boolean.TRUE);
-                    if(scrapeamazon.scrapeOrders()) {
-                        scrapeamazon.setStartFlag(Boolean.FALSE);
+                    scrapeAmazon.setStartFlag(Boolean.TRUE);
+                    if(scrapeAmazon.scrapeOrders()) {
+                        scrapeAmazon.setStartFlag(Boolean.FALSE);
                         AppScrape.countIncrement(10);
                     }
                 }else{
@@ -69,10 +69,10 @@ public class navCode {
                 if(amazonNavUtil.clickOrder()){
                     AppScrape.countIncrement(1);
                 }else{
-                    scrapeamazon.setStartFlag(Boolean.TRUE);
-                    if(scrapeamazon.scrapeOrders()) {
+                    scrapeAmazon.setStartFlag(Boolean.TRUE);
+                    if(scrapeAmazon.scrapeOrders()) {
                         amazonNavUtil.setCounter(-1);
-                        scrapeamazon.setStartFlag(Boolean.FALSE);
+                        scrapeAmazon.setStartFlag(Boolean.FALSE);
                         AppScrape.countIncrement(9);
                     }
                 }
@@ -91,7 +91,7 @@ public class navCode {
                 AppScrape.findNodes(root);
                 node=navUtil.findMyButton("Order date","text");
                 if(navUtil.getBtnFindFlag()){
-                    if(scrapeamazon.scrapeOrders()){
+                    if(scrapeAmazon.scrapeOrders()){
                         node = navUtil.findMyButton("Navigation panel, button, double tap to open side panel","content_description");
                         if ( navUtil.getBtnFindFlag() ) {
                             navUtil.clickButton(node);
@@ -126,10 +126,10 @@ public class navCode {
                 if(amazonNavUtil.clickNthButton("View order details")){
                     AppScrape.countIncrement(1);
                 }else{
-                    scrapeamazon.setStartFlag(Boolean.TRUE);
-                    if(scrapeamazon.scrapeOrders()) {
+                    scrapeAmazon.setStartFlag(Boolean.TRUE);
+                    if(scrapeAmazon.scrapeOrders()) {
                         amazonNavUtil.setCounter(-1);
-                        scrapeamazon.setStartFlag(Boolean.FALSE);
+                        scrapeAmazon.setStartFlag(Boolean.FALSE);
                         AppScrape.countIncrement(4);
                     }
                 }
@@ -139,7 +139,7 @@ public class navCode {
                 AppScrape.findNodes(root);
                 node=navUtil.findMyButton("Order date","text");
                 if(navUtil.getBtnFindFlag()) {
-                    if (scrapeamazon.scrapeOrders()) {
+                    if (scrapeAmazon.scrapeOrders()) {
                         node = navUtil.findMyButton("Navigation panel, button, double tap to open side panel","content_description");
                         if ( navUtil.getBtnFindFlag() ) {
                             navUtil.clickButton(node);

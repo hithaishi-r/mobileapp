@@ -3,7 +3,6 @@ package com.example.android.appNav.amazon;
 import android.util.Log;
 import android.view.accessibility.AccessibilityNodeInfo;
 import com.example.android.appscrape.AppScrape;
-import com.example.android.appscrape.utility.navUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,11 +10,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-public class scrapeamazon {
+public class scrapeAmazon {
 
     private static Boolean startFlag = Boolean.FALSE;
     public static Boolean getStartFlag() { return startFlag; }
-    public static void setStartFlag(Boolean flag) { scrapeamazon.startFlag = flag; }
+    public static void setStartFlag(Boolean flag) { scrapeAmazon.startFlag = flag; }
 
     private static com.example.android.appNav.amazon.data amazonData = new data();
 

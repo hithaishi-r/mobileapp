@@ -55,7 +55,7 @@ public class navCode {
                 AppScrape.findNodes(root);
                 node = navUtil.findMyButton("Flipkart Plus","text");
                 if ( navUtil.getBtnFindFlag() ) {
-                    if(scrapeflipkart.scrapePersonalInfo()){
+                    if(scrapeFlipkart.scrapePersonalInfo()){
                         AppScrape.countIncrement(1);
                     }
                 }
@@ -95,10 +95,10 @@ public class navCode {
                     node=navUtil.findMyButton("You have no orders","text");
                     if(navUtil.getBtnFindFlag()) {
                         ShowData.setMessage("No orders made");
-                        scrapeflipkart.setStartFlag(Boolean.TRUE);
-                        if(scrapeflipkart.scrapeOrders()) {
+                        scrapeFlipkart.setStartFlag(Boolean.TRUE);
+                        if(scrapeFlipkart.scrapeOrders()) {
                             flipkartNavUtil.setCounter(-1);
-                            scrapeflipkart.setStartFlag(Boolean.FALSE);
+                            scrapeFlipkart.setStartFlag(Boolean.FALSE);
                             AppScrape.countIncrement(4);
                         }
                     }else{
@@ -115,10 +115,10 @@ public class navCode {
                     if (flipkartNavUtil.clickOrders()){
                         AppScrape.countIncrement(1);
                     } else {
-                        scrapeflipkart.setStartFlag(Boolean.TRUE);
-                        if (scrapeflipkart.scrapeOrders()) {
+                        scrapeFlipkart.setStartFlag(Boolean.TRUE);
+                        if (scrapeFlipkart.scrapeOrders()) {
                             flipkartNavUtil.setCounter(-1);
-                            scrapeflipkart.setStartFlag(Boolean.FALSE);
+                            scrapeFlipkart.setStartFlag(Boolean.FALSE);
                             AppScrape.countIncrement(3);
                         }
                     }
@@ -129,7 +129,7 @@ public class navCode {
                 AppScrape.findNodes(root);
                 node=navUtil.findMyButton("Total Amount","text");
                 if(navUtil.getBtnFindFlag()){
-                    if(scrapeflipkart.scrapeOrders()){
+                    if(scrapeFlipkart.scrapeOrders()){
                         AppScrape.countIncrement(1);
                     }
                 }

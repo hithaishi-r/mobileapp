@@ -27,14 +27,23 @@ public class navUtil {
         while (iterator.hasNext()) {
 
             primeNode = iterator.next();
-            String nodeDesc = ("" + primeNode.getContentDescription()).toString();
-            String nodeName = ("" + primeNode.getText()).toString();
+            String nodeDesc = ("" + primeNode.getContentDescription());
+            String nodeName = ("" + primeNode.getText());
+            String className=("" + primeNode.getClassName());
             Log.e(TAG,"reached");
             if (field.equals("text") && nodeName.equals(fieldString) ) {
                 Log.e(TAG, "findMyButton: " + primeNode.toString() );
                 btnFindFlag = Boolean.TRUE;
                 break;
             } else if (field.equals("content_description") && nodeDesc.equals(fieldString)) {
+                Log.e(TAG, "findMyButton: " + primeNode.toString() );
+                btnFindFlag = Boolean.TRUE;
+                break;
+            } else if (field.equals("text_part") && nodeName.contains(fieldString)){
+                Log.e(TAG, "findMyButton: " + primeNode.toString() );
+                btnFindFlag = Boolean.TRUE;
+                break;
+            }else if (field.equals("className") && className.equals(fieldString)){
                 Log.e(TAG, "findMyButton: " + primeNode.toString() );
                 btnFindFlag = Boolean.TRUE;
                 break;

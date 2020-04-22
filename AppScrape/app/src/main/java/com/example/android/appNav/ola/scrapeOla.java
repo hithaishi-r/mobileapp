@@ -1,6 +1,5 @@
 package com.example.android.appNav.ola;
 
-import android.os.Environment;
 import android.util.Log;
 import android.view.accessibility.AccessibilityNodeInfo;
 import com.example.android.appscrape.AppScrape;

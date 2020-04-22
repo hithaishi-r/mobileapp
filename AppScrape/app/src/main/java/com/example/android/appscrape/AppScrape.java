@@ -106,6 +106,8 @@ public class AppScrape extends AccessibilityService {
                         com.example.android.appNav.amazon.navCode.stepsExecutor(root1);
                     }else if(MainActivity.appPackageName.equals("com.olacabs.customer")){
                         com.example.android.appNav.ola.navCode.stepsExecutor(root1);
+                    }else if(MainActivity.appPackageName.equals("com.ubercab")){
+                        com.example.android.appNav.uber.navCode.stepsExecutor(root1);
                     }
                 }
             }
